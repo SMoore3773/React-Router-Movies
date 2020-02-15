@@ -22,10 +22,11 @@ const Movie = (props) => {
   },[props.match.params.id]);
   
   // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = () => {
-  //   const addToSavedList = props.addToSavedList;
-  //   addToSavedList(movie)
-  // }
+  const saveMovie = () => {
+    const addToSavedList = props.addToSavedList;
+    addToSavedList(movie)
+  }
+
 
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -33,7 +34,12 @@ const Movie = (props) => {
 
   // const { title, director, metascore, stars } = movie;
   return (
-    <MovieCard key={movie.id} movie ={movie} renSav= {true}/>
+    <MovieCard key={movie.id} movie ={movie} saveMovie = {saveMovie} renSav= {true}/>
+
+
+
+    //**** This is the base code before stretch */
+
     // <div className="save-wrapper">
     //   <div className="movie-card">
     //     <h2>{title}</h2>
