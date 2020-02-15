@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
+import MovieCard from './MovieCard'
 
 const MovieList = props => {
   const [movies, setMovies] = useState([])
@@ -9,6 +10,7 @@ const MovieList = props => {
       axios
         .get('http://localhost:5000/api/movies')
         .then(response => {
+          console.log(response);
           setMovies(response.data);
         })
         .catch(error => {
@@ -23,35 +25,35 @@ const MovieList = props => {
     <div className="movie-list">
       {movies.map(movie => (
 
-        <MovieDetails key={movie.id} movie={movie} />
+        <MovieCard key={movie.id} movie={movie} renSav={false}/>
         
       ))}
     </div>
   );
 }
 
-function MovieDetails({ movie }) {
-  const { title, director, metascore, stars } = movie;
-  return (
-    <NavLink to={`/movies/${movie.id}`}>
-      <div  className="movie-card">
-        <h2>{title}</h2>
-        <div className="movie-director">
-          Director: <em>{director}</em>
-        </div>
-        <div className="movie-metascore">
-          Metascore: <strong>{metascore}</strong>
-        </div>
-        <h3>Actors</h3>
+// function MovieDetails({ movie }) {
+//   const { title, director, metascore, stars } = movie;
+//   return (
+//     <NavLink to={`/movies/${movie.id}`}>
+//       <div  className="movie-card">
+//         <h2>{title}</h2>
+//         <div className="movie-director">
+//           Director: <em>{director}</em>
+//         </div>
+//         <div className="movie-metascore">
+//           Metascore: <strong>{metascore}</strong>
+//         </div>
+//         <h3>Actors</h3>
 
-        {stars.map(star => (
-          <div key={star} className="movie-star">
-            {star}
-          </div>
-        ))}
-      </div>
-    </NavLink>
-  );
-}
+//         {stars.map(star => (
+//           <div key={star} className="movie-star">
+//             {star}
+//           </div>
+//         ))}
+//       </div>
+//     </NavLink>
+//   );
+// }
 
 export default MovieList;
