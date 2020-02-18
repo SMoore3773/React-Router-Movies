@@ -19,9 +19,11 @@ const MustWatch =(props) => {
       
       getMovies();
     }, []);
+
     const metaMovies = [];
     movies.forEach((movie)=>{if(movie.metascore >=90){ metaMovies.push(movie)}})
     console.log('metamovies',metaMovies)
+    
     return(
         <div>
         {metaMovies.map(movie => (
